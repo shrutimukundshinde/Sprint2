@@ -33,14 +33,23 @@ public class Signupdefination {
 //background
 @Given("Admin is on the login page of Real Estate")
 public void admin_is_on_the_login_page_of_Real_Estate() {
-	
+	try {
+		String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"titlebar\"]/div/div/div/h2")).getText();
+		String actualtext1="My Profile";
+		Assert.assertEquals(exceptedtext1, actualtext1);
+		System.out.println(driver.getTitle());
+		}
+		catch(Exception e) {
+			System.out.println("Admin is Not on Profile page");
+			Assert.fail();
+		}
 }
 
-@When("Admin enters Username and Password")
-public void admin_enters_Username_and_Password() {
+@When("Admin enters Username {string} and Password {string}")
+public void admin_enters_Username_and_Password(String string, String string2) {
 	try {
-		driver.findElement(By.name("log")).sendKeys("admin");
-		driver.findElement(By.name("pwd")).sendKeys("admin@123");
+		driver.findElement(By.name("log")).sendKeys("mohankrishna176@gmail.com");
+		driver.findElement(By.name("pwd")).sendKeys("Secret@123&&");
 		System.out.println("Username and password entered");
 		}
 		catch(Exception e) {
@@ -77,6 +86,7 @@ public void admin_is_on_Dashboard_page() {
 @When("Admin clicks on properties")
 public void admin_clicks_on_properties() {
 	 try {
+		  Thread.sleep(1000);
 		  driver.findElement(By.xpath("//*[@id=\"menu-posts-property\"]/a/div[3]")).click();
 		  driver.findElement(By.xpath("//*[@id=\"menu-posts-property\"]/ul/li[5]/a")).click();
 		  System.out.println("Admin goes to Regions Page");
@@ -89,6 +99,7 @@ public void admin_clicks_on_properties() {
 @Then("Admin will navigate to Region page in Real Estate")
 public void admin_will_navigate_to_Region_page_in_Real_Estate() {
 	try {
+		Thread.sleep(1000);
 		String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"wpbody-content\"]/div[3]/h1")).getText();
 		String actualtext1="Regions";
 		Assert.assertEquals(exceptedtext1, actualtext1);
@@ -357,11 +368,12 @@ public void admin_will_click_on_delete_button() {
 @When("Admin clicks on one or more checkboxes in displayed result on Region Page")
 public void admin_clicks_on_one_or_more_checkboxes_in_displayed_result_on_Region_Page() {
     try {
+    	Thread.sleep(1000);
     	driver.findElement(By.xpath("//*[@id=\"cb-select-all-1\"]")).click();
     	Thread.sleep(2000);
     	driver.findElement(By.xpath("//*[@id=\"cb-select-all-1\"]")).click();
     	System.out.println("All checkboxes are selected");
-    	driver.findElement(By.xpath("//*[@id=\"the-list\"]/tr/th/input")).click();
+    	//driver.findElement(By.xpath("//*[@id=\"the-list\"]/tr/th/input")).click();
     	driver.findElement(By.xpath("//*[@id=\"the-list\"]/tr[2]/th/input")).click();
     	driver.findElement(By.xpath("//*[@id=\"the-list\"]/tr[4]/th/input")).click();
     	System.out.println("One or more checkboxes are selected in displayed result on Region Page");
@@ -376,6 +388,7 @@ public void admin_clicks_on_one_or_more_checkboxes_in_displayed_result_on_Region
 @When("selects delete option in dropdown from bulk actions")
 public void selects_delete_option_in_dropdown_from_bulk_actions() {
 	 try {
+		 Thread.sleep(1000);
 		 org.openqa.selenium.support.ui.Select parentregion=new org.openqa.selenium.support.ui.Select(driver.findElement(By.xpath("//*[@id=\"bulk-action-selector-top\"]")));
 		   parentregion.selectByIndex(1);
 		   System.out.println("Delete option selected in dropdown");
@@ -388,7 +401,7 @@ public void selects_delete_option_in_dropdown_from_bulk_actions() {
 
 @When("clicks on Apply button")
 public void clicks_on_Apply_button() {
-	 try {
+	 try { Thread.sleep(1000);
 	    	  driver.findElement(By.xpath("//*[@id=\"doaction\"]")).click();
 	    	  System.out.println("clicked on apply button");
     }
@@ -400,7 +413,9 @@ public void clicks_on_Apply_button() {
 
 @Then("Admin will see the validation message for the deleted fields on Region Page {string}")
 public void admin_will_see_the_validation_message_for_the_deleted_fields_on_Region_Page(String msg) {
-	 try {String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"message\"]/p")).getText();
+	 try {
+		 Thread.sleep(1000);
+		 String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"message\"]/p")).getText();
 		String actualtext1=msg;
 		Assert.assertEquals(exceptedtext1, actualtext1);
 		
@@ -416,6 +431,7 @@ public void admin_will_see_the_validation_message_for_the_deleted_fields_on_Regi
 @When("Admin clicks on Screen Options")
 public void admin_clicks_on_Screen_Options() {
 try {
+	Thread.sleep(1000);
 	driver.findElement(By.xpath("//*[@id=\"show-settings-link\"]")).click();
 	System.out.println("Admin clicks on screen option");
 }
@@ -427,7 +443,7 @@ catch(Exception e) {
 
 @When("deSelects all checkboxes in Screen option")
 public void deselects_all_checkboxes_in_Screen_option() {
-    try {
+    try { Thread.sleep(3000);
     	driver.findElement(By.xpath("//*[@id=\"description-hide\"]")).click();Thread.sleep(1000);
     	driver.findElement(By.xpath("//*[@id=\"slug-hide\"]")).click();Thread.sleep(1000);
     	driver.findElement(By.xpath("//*[@id=\"posts-hide\"]")).click();Thread.sleep(1000);
@@ -457,6 +473,7 @@ public void admin_clicks_on_all_checkboxes() {
 @Then("that fields are shown in title page of displayed result")
 public void that_fields_are_shown_in_title_page_of_displayed_result() {
 try{
+	Thread.sleep(1000);
 	String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"name\"]/a")).getText();
 	String actualtext1="Name";
 	Assert.assertEquals(exceptedtext1, actualtext1);
@@ -496,6 +513,7 @@ public void admin_enters_no_of_items_per_page_no(String number) {
 @When("clicks on Apply Button")
 public void clicks_on_Apply_Button() {
 	try {
+		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id=\"screen-options-apply\"]")).click();
 		System.out.println("Admin can click on apply button in screen options");
 	}
@@ -527,15 +545,15 @@ public void admin_will_click_on_view_option() {
 @Then("Admin will navigate to Real Estate find your home page")
 public void admin_will_navigate_to_Real_Estate_find_your_home_page() {
 	 try {
-		 
-		String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"titlebar\"]/div/div/div/div/p")).getText();
+		 Thread.sleep(3000);
+		String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"titlebar\"]/div/div/div/h1")).getText();;
 		Thread.sleep(3000);
 		driver.navigate().back();
-	    String actualtext1=driver.findElement(By.xpath("//*[@data-colname=\"Description\"]/p")).getText();
+	    String actualtext1="Region: "+driver.findElement(By.xpath("//*[@class=\"name column-name has-row-actions column-primary\"]/strong/a")).getText();
 		System.out.println(exceptedtext1);
 		System.out.println(actualtext1);
 		
-		Assert.assertEquals(exceptedtext1, actualtext1);
+		Assert.assertEquals(actualtext1,exceptedtext1);
 		 System.out.println("Admin can view that region result");
 		 Thread.sleep(1000);
 		 driver.navigate().forward();
@@ -812,7 +830,7 @@ public void admin_will_click_on_Property_Settings() {
 @Then("Admin will navigate to Property Settings")
 public void admin_will_navigate_to_Property_Settings() {
 try {
-	String exceptedtext1=driver.findElement(By.xpath("//*[@id=\"wpbody-content\"]/div[3]/h1")).getText();
+	String exceptedtext1=driver.findElement(By.xpath("//*[@class=\"wrap acf-settings-wrap\"]/h1")).getText();
 	String actualtext1="Properties Settings";
 	System.out.println(driver.getTitle());
 	Assert.assertEquals(exceptedtext1, actualtext1);

@@ -11,7 +11,8 @@ features="src/test/java/Feature",
 glue= {"StepDefination","Hook"},
 dryRun =false,
 //monochrome = true,
-tags={"@scenario_one"},
+//tags={"@scenario_five"},
+
 plugin = { "pretty" ,"junit:target/report.xml","html:target/cucumber-pretty","json:target/jsonreport.json"}
 
 )
